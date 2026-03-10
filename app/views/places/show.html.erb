@@ -1,15 +1,23 @@
 <h1><%= @place["name"] %></h1>
 
-<h2>My Entries</h2>
-<% for entry in @entries %>
-  <h3><%= entry["title"] %></h3>
-  <h4><%= entry["occurred_on"] %></h4>
-  <p><%= entry["description"] %></p>
+<% if @current_user != nil %>
+  <p>
+    <a href="/entries/new?place_id=<%= @place["id"] %>" class="btn btn-outline-dark">New Entry</a>
+  </p>
 <% end %>
 
-<p>
-  <a href="/entries/new?place_id=<%= @place["id"] %>">New Entry</a>
-</p>
+<div class="row mt-3">
+  <% for entry in @entries %>
+    <div class="col-lg-4 col-md-6 mb-3">
+      <h3><%= entry["title"] %></h3>
+      <h4><%= entry["occurred_on"] %></h4>
+      <% if entry["image"] != nil && entry["image"] != "" %>
+        <img src="<%= entry["image"] %>" class="img-fluid w-100">
+      <% end %>
+      <p><%= entry["description"] %></p>
+    </div>
+  <% end %>
+</div>
 
 <p>
   <a href="/places">Back to All Places</a>
