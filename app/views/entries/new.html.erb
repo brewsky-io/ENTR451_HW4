@@ -1,7 +1,7 @@
 <h1>New Entry</h1>
 
 <% if @current_user != nil %>
-  <form action="/entries" method="post">
+  <form action="/entries" method="post" enctype="multipart/form-data">
     <input type="hidden" name="place_id" value="<%= params["place_id"] %>">
 
     <p>
@@ -20,8 +20,8 @@
     </p>
 
     <p>
-      <label for="image_input">Image URL (optional)</label>
-      <input type="text" name="image" id="image_input">
+      <label for="uploaded_image_input">Upload Image (optional)</label>
+      <input type="file" name="uploaded_image" id="uploaded_image_input">
     </p>
 
     <button class="btn btn-primary">Save</button>
